@@ -7,15 +7,17 @@ body {
   }
   
   h1, h2, h3 {
-    margin: 0;
+    margin-top: 5px;
+    font-size: 30px;
+    font-family: 'CustomFont', sans-serif;
   }
   
   section {
-    padding: 20px 20px;
+    padding: 30px 20px;
     text-align: center;
   }
   
-  /* Первый экран */
+
   .screen-1 {
     display: flex;
     align-items: center;
@@ -24,13 +26,17 @@ body {
     color: white;
     padding: 25px 10px;
   }
-  
+
+  .screen-1 .content p {
+    font-family: 'CustomFont', sans-serif;
+    font-size: 17px;
+  }
   .screen-1 .content {
-    max-width: 50%;
+    max-width: 30%;
   }
   
   .screen-1 .image img {
-    max-width: 80%;
+    max-width: 90%;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   }
@@ -56,24 +62,46 @@ body {
   .game-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
   }
   
-  .game-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    text-align: center;
-  }
+.game-card {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+  transition: height 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  height: 220px; /* Высота только для изображения и заголовка */
+}
+
+.game-card .game-description {
+  font-size: 0.9em;
+  color: #555;
+  opacity: 0; /* Абзац скрыт по умолчанию */
+  transform: translateY(-20px); /* Смещен вверх */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.game-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  height: auto; /* Увеличиваем высоту для абзаца */
+}
+
+.game-card:hover .game-description {
+  opacity: 1; /* Делаем текст видимым */
+  transform: translateY(0); /* Возвращаем текст в нормальное положение */
+}
+
   
   .game-card img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-    border-radius: 50%;
+    margin-bottom: 2px;
   }
   
   .game-card h3 {
@@ -85,4 +113,104 @@ body {
     font-size: 0.9em;
     color: #555;
   }
-  
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('fonts/Merriweather/Merriweather-Black.ttf') format('truetype'),
+       url('fonts/Merriweather/Merriweather-Light.ttf') format('truetype');
+}
+
+
+/* Стили для контейнера, который будет размещать секции параллельно */
+.screen-2-4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 20px;
+  margin-top: 20px;
+}
+
+.game-container, .instructions-container {
+  flex: 1;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+/* Мини-игра */
+.game-container iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+}
+
+/* Стили для блока с инструкциями */
+.instructions-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.instructions-container h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.instructions {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.instructions ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.instructions li {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.instructions strong {
+  color: #007BFF; /* Синий цвет для выделения */
+}
+
+/* Адаптивность для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .screen-2-4 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-container, .instructions-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .game-container iframe {
+    height: 250px;
+  }
+}
+
+#game-description {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: left;
+}
+#game-description h3 {
+  color: #007BFF;
+}
+#game-description p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
