@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Первый экран -->
   <section class="screen screen-1">
     <div class="content">
       <h1>Добро пожаловать в мир игр!</h1>
@@ -18,7 +17,6 @@
     </div>
   </section>
 
-  <!-- Секция с мини-игрой и инструкцией параллельно -->
 <section class="screen screen-2-4">
   <div class="game-container">
     <h2>Попробуйте нашу мини-игру</h2>
@@ -43,7 +41,6 @@
 </section>
 
 
-  <!-- Третий экран -->
   <section class="screen screen-3">
     <h2>Популярные игры</h2>
     <div class="game-list" >
@@ -86,35 +83,27 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Получаем все карточки игр
   const gameCards = document.querySelectorAll('.game-card');
-  // Получаем iframe и блок описания
   const gameFrame = document.getElementById('game-frame');
   const descriptionBlock = document.getElementById('game-description').querySelector('p');
 
-  // Проверка на существование элементов
   if (!gameFrame || !descriptionBlock) {
     console.error('Не удалось найти iframe или блок описания.');
     return;
   }
 
-  // Добавляем обработчик клика для каждой карточки
   gameCards.forEach(card => {
     card.addEventListener('click', () => {
-      // Получаем URL и описание игры из атрибутов
       const gameUrl = card.getAttribute('data-src');
       const gameDescription = card.querySelector('.game-description p').textContent;
 
       if (gameUrl) {
-        // Обновляем src в iframe
         gameFrame.src = gameUrl;
       }
       if (gameDescription) {
-        // Обновляем описание в блоке
         descriptionBlock.textContent = gameDescription;
       }
 
-      // Прокручиваем страницу к секции правил
       document.querySelector('.instructions-container').scrollIntoView({ behavior: 'smooth' });
     });
   });
